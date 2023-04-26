@@ -9,6 +9,10 @@ public class Follow {
         this.count = 0 + count;
     }
 
+    public String toString(){
+        return word + " (" + count + ")";
+    }
+
     public String getWord() {
         return word;
     }

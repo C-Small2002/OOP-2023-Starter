@@ -9,7 +9,7 @@ import processing.core.PApplet;
 
 public class DANI extends PApplet {
 
-	
+	ArrayList<Word> wordz = new ArrayList<Word>();
 
 	public void settings() {
 		size(1000, 1000);
@@ -23,13 +23,20 @@ public class DANI extends PApplet {
 	
     public String[] writeSonnet()
     {
+		for(int i = 0; i < 14; i++){
+			for(Word word : wordz){
+				System.out.println(word);	
+			}
+		}
+
         return null;
     }
 
 	public void setup() {
 		colorMode(HSB);
 		loadFile();
-       
+		printModel();
+		writeSonnet();
 	}
 
 	public void keyPressed() {
@@ -40,7 +47,7 @@ public class DANI extends PApplet {
 	public void loadFile(){
 
 		String[] lines = loadStrings("small.txt");
-		/* 
+		 
 		for(String line : lines){
 			words = split(line, ' ');
 			for(String w : words){
@@ -48,34 +55,39 @@ public class DANI extends PApplet {
 				w = w.toLowerCase();
 				if(findWord(w) == true){
 					Word word = new Word(w);
-					word.setFollows(null);
+					word.findFollow(w);
+					wordz.add(word);
+					System.out.println(word);
 				}
 				
 			}
 		}
-		*/
+		/*
 		for(String line : lines){
 			words = split(line, ' ');
-			for(int i = 0; i<words.length; i++){
+			for(int i = 0; i<=words.length-1; i++){
 				String w;
 				w = words[i].replace("[^\\w\\s]","");
 				w = words[i].toLowerCase();
 				if(findWord(w) == true){
 					Word word = new Word(w);
-					follow = new Follow(w, 1);
-					word.addFollow(follow);
+					word.findFollow(w);
+					wordz.add(word);
+					System.out.println(word);
 				}
 				
 			}
 		}
-		
+		*/
 
 		//look up splitting file into individual words in java processing
 
 	}
 
 	public void printModel(){
-		
+		for(Word w : wordz){
+			System.out.println(w);
+		}
 	}
 
 	public Boolean findWord(String str){
@@ -88,6 +100,7 @@ public class DANI extends PApplet {
 	}
 
 	float off = 0;
+	
 
 	public void draw() 
     {
@@ -96,6 +109,8 @@ public class DANI extends PApplet {
 		noStroke();
 		textSize(20);
         textAlign(CENTER, CENTER);
+		//printModel();
+		//writeSonnet();
         
 	}
 }
