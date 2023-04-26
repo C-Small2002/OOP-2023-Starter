@@ -6,9 +6,13 @@ public class Word {
     String word;
     ArrayList<Follow> follows = new ArrayList<Follow>();
 
-    public Word(String word, ArrayList<Follow> follows){
+    public Word(String word){
         this.word = word;
-        this.follows = follows;
+    }
+
+    @Override
+    public String toString() {
+        return word;
     }
 
     public String getWord() {
