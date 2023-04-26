@@ -6,7 +6,7 @@ public class Follow {
 
     public Follow(String word, int count){
         this.word = word;
-        this.count = count;
+        this.count = 0 + count;
     }
 
     public String getWord() {

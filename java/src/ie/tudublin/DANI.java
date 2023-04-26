@@ -3,6 +3,7 @@ package ie.tudublin;
 import java.io.File;
 import java.util.ArrayList;
 
+import ie.Follow;
 import ie.Word;
 import processing.core.PApplet;
 
@@ -18,6 +19,7 @@ public class DANI extends PApplet {
     String[] sonnet;
 	String[] words;
 	Word word;
+	Follow follow;
 	
     public String[] writeSonnet()
     {
@@ -38,23 +40,42 @@ public class DANI extends PApplet {
 	public void loadFile(){
 
 		String[] lines = loadStrings("small.txt");
-		
+		/* 
 		for(String line : lines){
 			words = split(line, ' ');
 			for(String w : words){
 				w = w.replace("[^\\w\\s]","");
 				w = w.toLowerCase();
 				if(findWord(w) == true){
-				Word word = new Word(w);
-				word.setFollows(null);
+					Word word = new Word(w);
+					word.setFollows(null);
 				}
 				
 			}
 		}
-
+		*/
+		for(String line : lines){
+			words = split(line, ' ');
+			for(int i = 0; i<words.length; i++){
+				String w;
+				w = words[i].replace("[^\\w\\s]","");
+				w = words[i].toLowerCase();
+				if(findWord(w) == true){
+					Word word = new Word(w);
+					follow = new Follow(w, 1);
+					word.addFollow(follow);
+				}
+				
+			}
+		}
+		
 
 		//look up splitting file into individual words in java processing
 
+	}
+
+	public void printModel(){
+		
 	}
 
 	public Boolean findWord(String str){
